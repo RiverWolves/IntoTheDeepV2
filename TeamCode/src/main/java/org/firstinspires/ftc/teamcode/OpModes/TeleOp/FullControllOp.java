@@ -18,6 +18,7 @@ public class FullControllOp extends LinearOpMode {
         waitForStart();
         while(opModeIsActive()){
             lift.updatePozition(gamepad1.left_stick_y);
+            telemetry.update();
         }
     }
 
