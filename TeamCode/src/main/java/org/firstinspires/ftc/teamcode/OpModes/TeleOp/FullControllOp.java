@@ -11,7 +11,7 @@ public class FullControllOp extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        Lift lift = new Lift();
+        final Lift lift = new Lift();
         lift.init(this);
 //        while(opModeInInit()){ }
         if(isStopRequested()) return;

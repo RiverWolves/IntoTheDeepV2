@@ -8,17 +8,18 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.sun.tools.javac.util.Pair;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.Resurse.Subsystem;
 
 import java.lang.reflect.Array;
 
-public class Lift {
+public class Lift extends Subsystem {
     private HardwareMap hMap = null;
     private Telemetry tel = null;
     private DcMotor MotorLiftStanga = null, MotorLiftDreapta = null;
     private float coeff = 4; //The coefficient of how much the input ifluences the movement of the lift
     private int topLimit = 2000, lowLimit = 0; //Limit the height of the lift
     public int liftVirtualPozition = 0;
-
+    @Override
     public void init(OpMode opmode) {
         // Splitting the opmode into hardwaremap and telemetry
         hMap = opmode.hardwareMap;
