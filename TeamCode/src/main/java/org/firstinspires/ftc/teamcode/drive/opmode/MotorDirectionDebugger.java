@@ -14,9 +14,9 @@ import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
  * This is a simple teleop routine for debugging your motor configuration.
  * Pressing each of the buttons will power its respective motor.
  *
- * Button Mappings:
+ * Buttons Mappings:
  *
- * Xbox/PS4 Button - Motor
+ * Xbox/PS4 Buttons - Motor
  *   X / ▢         - Front Left
  *   Y / Δ         - Front Right
  *   B / O         - Rear  Right
@@ -63,7 +63,7 @@ public class MotorDirectionDebugger extends LinearOpMode {
         while (!isStopRequested()) {
             telemetry.addLine("Press each button to turn on its respective motor");
             telemetry.addLine();
-            telemetry.addLine("<font face=\"monospace\">Xbox/PS4 Button - Motor</font>");
+            telemetry.addLine("<font face=\"monospace\">Xbox/PS4 Buttons - Motor</font>");
             telemetry.addLine("<font face=\"monospace\">&nbsp;&nbsp;X / ▢&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Front Left</font>");
             telemetry.addLine("<font face=\"monospace\">&nbsp;&nbsp;Y / Δ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Front Right</font>");
             telemetry.addLine("<font face=\"monospace\">&nbsp;&nbsp;B / O&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Rear&nbsp;&nbsp;Right</font>");
