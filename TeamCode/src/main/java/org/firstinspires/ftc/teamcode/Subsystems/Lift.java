@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.Resurse.Buttons;
 import org.firstinspires.ftc.teamcode.Resurse.Subsystem;
 
 public class Lift extends Subsystem {
@@ -28,7 +29,7 @@ public class Lift extends Subsystem {
         liftVirtualPozition = 0;
     }
     @Override
-    public void loop() {
+    public void loop(Buttons buttons) {
         float y = gpad.left_stick_y;
         if (hMap == null || tel == null) tel.addData("ERROR #001", this);
         if(!isInParameter(-y)[0]||!isInParameter(-y)[1]) tel.addData("ERROR #002 : OUT OF BOUNDS", this);

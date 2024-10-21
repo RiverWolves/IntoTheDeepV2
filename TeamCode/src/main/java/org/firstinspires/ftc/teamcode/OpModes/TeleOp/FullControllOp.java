@@ -26,7 +26,7 @@ public class FullControllOp extends LinearOpMode {
         waitForStart();
         while(opModeIsActive()){
             for (Subsystem sub:subsystems) {
-                sub.loop();
+                sub.loop(buttons);
             }
             telemetry.update();
         }

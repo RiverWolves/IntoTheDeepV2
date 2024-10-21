@@ -5,38 +5,36 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.teamcode.Resurse.Buttons;
 import org.firstinspires.ftc.teamcode.Resurse.Subsystem;
 
 public class Intake extends Subsystem {
-   HardwareMap hm;
+    HardwareMap hm;
     Gamepad gp;
-    CRServo rabatare1, rabatare2;
+    CRServo rotireS, rotireD;
     public double Putere;
+
     @Override
     public void init(OpMode opmode) {
         hm = opmode.hardwareMap;
-         gp = opmode.gamepad2;
-         rabatare1 = hm.crservo.get("rabatare1");
-        rabatare2 = hm.crservo.get("rabatare2");
+        gp = opmode.gamepad2;
+        rotireS = hm.crservo.get("ServoIntakeRotireStanga");
+        rotireD = hm.crservo.get("ServoIntakeRotireDreapta");
 
-        rabatare2.setDirection(DcMotorSimple.Direction.REVERSE);
+        rotireD.setDirection(DcMotorSimple.Direction.REVERSE);
 
 
     }
 
     @Override
-    public void loop() {
-        Putere = gp.right_trigger-gp.left_trigger;
-
-        rabatare1.setPower(Putere);
-        rabatare2.setPower(Putere);
-
-
+    public void loop(Buttons buttons) {
+        Putere = gp.right_trigger - gp.left_trigger;
+        rotireS.setPower(Putere);
+        rotireD.setPower(Putere);
     }
 
-    public double getPower(){
+    public double getPower() {
         return Putere;
     }
 }

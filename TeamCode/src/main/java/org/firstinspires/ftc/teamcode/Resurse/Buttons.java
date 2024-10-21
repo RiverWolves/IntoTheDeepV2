@@ -21,7 +21,7 @@ public class Buttons extends Subsystem {
         gmp2 = opmode.gamepad2;
     }
     @Override
-    public void loop() {
+    public void loop(Buttons buttons) {
        circle = buttonToSwich(gmp2.circle,circle_state);
         square = buttonToSwich(gmp2.square,square_state);
         triangle = buttonToSwich(gmp2.triangle,triangle_state);
