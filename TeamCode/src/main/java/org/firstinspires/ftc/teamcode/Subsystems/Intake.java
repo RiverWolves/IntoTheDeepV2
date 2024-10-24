@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.Resurse.Buttons;
 import org.firstinspires.ftc.teamcode.Resurse.Subsystem;
@@ -13,6 +14,8 @@ public class Intake extends Subsystem {
     HardwareMap hm;
     Gamepad gp;
     CRServo rotireS, rotireD;
+    Servo rabatare1;
+    Servo rabatare2;
     public double Putere;
 
     @Override
@@ -21,10 +24,12 @@ public class Intake extends Subsystem {
         gp = opmode.gamepad2;
         rotireS = hm.crservo.get("ServoIntakeRotireStanga");
         rotireD = hm.crservo.get("ServoIntakeRotireDreapta");
+        rabatare1 = hm.servo.get("ServoIntakeRabatareDreapta");
+        rabatare2 = hm.servo.get("ServoIntakeRabatareStanga");
 
+
+        rabatare1.setDirection(Servo.Direction.REVERSE);
         rotireD.setDirection(DcMotorSimple.Direction.REVERSE);
-
-
     }
 
     @Override
@@ -32,6 +37,18 @@ public class Intake extends Subsystem {
         Putere = gp.right_trigger - gp.left_trigger;
         rotireS.setPower(Putere);
         rotireD.setPower(Putere);
+
+
+        if (buttons.cross)
+        {
+            rabatare1.setPosition(0.5);
+            rabatare2.setPosition(0.5);
+        }
+        else
+        {
+            rabatare1.setPosition(0);
+            rabatare2.setPosition(0);
+        }
     }
 
     public double getPower() {

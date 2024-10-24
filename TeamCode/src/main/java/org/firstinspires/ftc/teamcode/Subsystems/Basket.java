@@ -24,7 +24,6 @@ public class Basket extends Subsystem {
 
     @Override
     public void loop(Buttons buttons) {
-
         if (buttons.triangle)
             basket.setPosition(0.5);
         else
