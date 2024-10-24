@@ -44,10 +44,10 @@ public class Buttons extends Subsystem {
         else {
             switch (state) {
                 case UNPRESSING: {
-                    state = buton.UNPRESSED;
+                    state = buton.PRESSED;
                 }
                 case PRESSING: {
-                    state = buton.UNPRESSING;
+                    state = buton.UNPRESSED;
                 }
             }
         }

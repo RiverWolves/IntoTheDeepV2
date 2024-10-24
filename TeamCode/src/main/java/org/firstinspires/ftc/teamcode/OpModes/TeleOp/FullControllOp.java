@@ -17,10 +17,11 @@ public class FullControllOp extends LinearOpMode {
         final Buttons buttons = new Buttons();
         final Claw claw = new Claw();
         final Lift lift = new Lift();
-        Subsystem subsystems[] = {buttons,lift,claw};
+        Subsystem[] subsystems = {buttons,lift,claw};
         for (Subsystem sub:subsystems) {
             sub.init(this);
         }
+
 //        while(opModeInInit()){ }
         if(isStopRequested()) return;
         waitForStart();
