@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.Resurse.Buttons;
 import org.firstinspires.ftc.teamcode.Resurse.Subsystem;
 
 public class Extendo extends Subsystem {
-    private HardwareMap hm=null
+    private HardwareMap hm=null;
     private Telemetry tele=null;
     private final int LimitaSus = 2000, LimitaJos = 0;
     private float coeficient=4;
