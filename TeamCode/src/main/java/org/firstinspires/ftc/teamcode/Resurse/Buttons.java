@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode.Resurse;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
 public class Buttons extends Subsystem {
     public enum buton {
         UNPRESSED,
@@ -10,48 +12,47 @@ public class Buttons extends Subsystem {
         PRESSED,
         UNPRESSING
     }
-    private buton square_state,circle_state,triangle_state,cross_state ;
+    private buton[] buttons={buton.UNPRESSED,buton.UNPRESSED,buton.UNPRESSED,buton.UNPRESSED};
     public boolean square,circle,triangle,cross;
     Gamepad gmp1,gmp2;
+    Telemetry tele;
 
 
     @Override
     public void init(OpMode opmode) {
         gmp1 = opmode.gamepad1;
         gmp2 = opmode.gamepad2;
+        tele=opmode.telemetry;
     }
     @Override
     public void loop(Buttons buttons) {
-       circle = buttonToSwich(gmp2.circle,circle_state);
-        square = buttonToSwich(gmp2.square,square_state);
-        triangle = buttonToSwich(gmp2.triangle,triangle_state);
-        cross = buttonToSwich(gmp2.cross,cross_state);
+        circle = buttonToSwich(gmp2.b,0);
+        square = buttonToSwich(gmp2.x,1);
+        triangle = buttonToSwich(gmp2.y,2);
+        cross = buttonToSwich(gmp2.a,3);
+
     }
 
 
 
-    public boolean buttonToSwich(boolean button, buton state){
-        if(button) {
-            switch (state) {
-                case UNPRESSED: {
-                    state = buton.PRESSING;
-                }
-                case PRESSED: {
-                    state = buton.UNPRESSING;
-                }
+    public boolean buttonToSwich(boolean button, int index){
+        buton temp_button = buttons[index];
+        if (button) {
+            if (temp_button == buton.UNPRESSED) {
+                buttons[index] = buton.PRESSING;
+            }
+            if (temp_button == buton.PRESSED) {
+                buttons[index] = buton.UNPRESSING;
             }
         }
-        else {
-            switch (state) {
-                case UNPRESSING: {
-                    state = buton.PRESSED;
-                }
-                case PRESSING: {
-                    state = buton.UNPRESSED;
-                }
-            }
+        if (!button) {
+            if (temp_button == buton.UNPRESSING)
+                buttons[index] = buton.UNPRESSED;
+            if (temp_button == buton.PRESSING)
+                buttons[index] = buton.PRESSED;
         }
-        return (state == buton.PRESSED);
+
+        return (buttons[index] == buton.PRESSED);
     }
     /*ElapsedTime et, lastDebounceTime, timeFromPressed;
     boolean buttonState = false;

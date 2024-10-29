@@ -5,31 +5,35 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Resurse.Buttons;
 import org.firstinspires.ftc.teamcode.Resurse.Subsystem;
 
 public  class Claw extends Subsystem {
     HardwareMap hm;
     Gamepad gp;
-    Servo cwS,cwD;
+    Servo  cw;
+     Telemetry telem;
     Float poz;
     @Override
     public void init(OpMode opmode) {
         hm = opmode.hardwareMap;
         gp = opmode.gamepad2;
-        cwD = hm.servo.get("ServoClawDreapta");
-        cwS = hm.servo.get("ServoClawStanga");
-        poz = 0f;
+        telem=opmode.telemetry;
+        cw = hm.servo.get("ServoClaw");
+        poz = 0.3f;
+        cw.setPosition(poz);
     }
 
     @Override
     public void loop(Buttons buttons) {
         if(buttons.circle)
-            poz = 0.5f;
+            poz = 0.45f;
         else
-            poz = 0f;
+            poz = 0.3f;
 
-        cwD.setPosition(poz);
-        cwS.setPosition(poz);
+        cw.setPosition(poz);
+//        telem.addData("Claw: pozitie ", poz);
+//        telem.addData("Claw: buton ", buttons.circle);
     }
 }

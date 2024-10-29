@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Resurse.Buttons;
 import org.firstinspires.ftc.teamcode.Resurse.Subsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.Basket;
 import org.firstinspires.ftc.teamcode.Subsystems.Claw;
 import org.firstinspires.ftc.teamcode.Subsystems.Lift;
 
@@ -17,7 +18,8 @@ public class FullControllOp extends LinearOpMode {
         final Buttons buttons = new Buttons();
         final Claw claw = new Claw();
         final Lift lift = new Lift();
-        Subsystem[] subsystems = {buttons,lift,claw};
+        final Basket basket = new Basket();
+        Subsystem[] subsystems = {buttons,claw,basket};
         for (Subsystem sub:subsystems) {
             sub.init(this);
         }
