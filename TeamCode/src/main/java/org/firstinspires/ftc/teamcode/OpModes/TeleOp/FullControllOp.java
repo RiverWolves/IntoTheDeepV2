@@ -9,6 +9,7 @@ import org.firstinspires.ftc.teamcode.Resurse.Subsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.Basket;
 import org.firstinspires.ftc.teamcode.Subsystems.Claw;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveTrain;
+import org.firstinspires.ftc.teamcode.Subsystems.Intake;
 import org.firstinspires.ftc.teamcode.Subsystems.Lift;
 
 @TeleOp(name="FullControll")
@@ -19,9 +20,10 @@ public class FullControllOp extends LinearOpMode {
         final Buttons buttons = new Buttons();
         final Claw claw = new Claw();
         final Lift lift = new Lift();
+        final Intake intake= new Intake();
         final DriveTrain driveTrain = new DriveTrain();
         final Basket basket = new Basket();
-        Subsystem[] subsystems = {buttons, driveTrain,claw,basket};
+        Subsystem[] subsystems = {buttons,driveTrain, intake,basket,claw};
         for (Subsystem sub:subsystems) {
             sub.init(this);
         }
