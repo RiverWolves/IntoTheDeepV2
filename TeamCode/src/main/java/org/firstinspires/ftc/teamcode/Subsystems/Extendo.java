@@ -22,6 +22,7 @@ public class Extendo extends Subsystem {
     public void init(OpMode opmode){
         hm=opmode.hardwareMap;
         gp=opmode.gamepad2;
+        tele= opmode.telemetry;
         me=initialized(hm.get(DcMotor.class, "MotorExtendo"), DcMotorSimple.Direction.FORWARD);
         me.setPower(0);
         ExtendoVirtualPosition =0;

@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.onbotjava.handlers.admin.ResetOnBotJava;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Resurse.Buttons;
 import org.firstinspires.ftc.teamcode.Resurse.Subsystem;
@@ -24,8 +25,8 @@ public class Lift extends Subsystem {
         hMap = opmode.hardwareMap;
         tel = opmode.telemetry;
         gpad = opmode.gamepad2;
-        MotorLiftStanga = initialized(hMap.get(DcMotor.class,"MotorLiftStanga"), DcMotorSimple.Direction.FORWARD);
-        MotorLiftDreapta = initialized(hMap.get(DcMotor.class,"MotorLiftDreapta"), DcMotorSimple.Direction.REVERSE);
+        MotorLiftStanga = initialized(hMap.get(DcMotor.class,"MotorLiftStanga"), DcMotorSimple.Direction.REVERSE);
+        MotorLiftDreapta = initialized(hMap.get(DcMotor.class,"MotorLiftDreapta"), DcMotorSimple.Direction.FORWARD);
         liftVirtualPozition = 0;
     }
     @Override
@@ -54,7 +55,9 @@ public class Lift extends Subsystem {
     }
     private DcMotor initialized(DcMotor motor, DcMotorSimple.Direction direction){
         motor.setDirection(direction);
+        motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         return motor;
     }
 

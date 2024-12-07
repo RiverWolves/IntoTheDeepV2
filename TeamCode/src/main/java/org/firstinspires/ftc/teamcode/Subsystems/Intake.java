@@ -66,8 +66,8 @@ public class Intake extends Subsystem {
 
         if (buttons.cross)
         {
-            rabatare1.setPosition(0.5);
-            rabatare2.setPosition(0.5);
+            rabatare1.setPosition(0.8);
+            rabatare2.setPosition(0.8);
         }
         else
         {

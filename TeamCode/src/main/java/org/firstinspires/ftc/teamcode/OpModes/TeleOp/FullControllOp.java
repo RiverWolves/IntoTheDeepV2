@@ -9,6 +9,7 @@ import org.firstinspires.ftc.teamcode.Resurse.Subsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.Basket;
 import org.firstinspires.ftc.teamcode.Subsystems.Claw;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveTrain;
+import org.firstinspires.ftc.teamcode.Subsystems.Extendo;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake;
 import org.firstinspires.ftc.teamcode.Subsystems.Lift;
 
@@ -23,7 +24,8 @@ public class FullControllOp extends LinearOpMode {
         final Intake intake= new Intake();
         final DriveTrain driveTrain = new DriveTrain();
         final Basket basket = new Basket();
-        Subsystem[] subsystems = {buttons,driveTrain, intake,basket,claw};
+        final Extendo extendo = new Extendo();
+        Subsystem[] subsystems = {buttons,driveTrain,extendo,lift,intake,basket,claw};
         for (Subsystem sub:subsystems) {
             sub.init(this);
         }
