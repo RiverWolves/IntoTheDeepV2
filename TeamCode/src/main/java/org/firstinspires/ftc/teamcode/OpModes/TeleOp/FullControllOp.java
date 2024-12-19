@@ -22,7 +22,10 @@ public class FullControllOp extends LinearOpMode {
         final Lift lift = new Lift();
         final Intake intake= new Intake();
         final DriveTrain driveTrain = new DriveTrain();
-        Subsystem[] subsystems = {buttons,driveTrain,extendo,lift,intake,basket,claw};
+        final Extendo extendo = new Extendo() ;
+        final Basket basket = new Basket();
+        final Claw claw = new Claw;
+        Subsystem[] subsystems = {buttons,driveTrain,lift,intake,basket};
         for (Subsystem sub:subsystems) {
             sub.init(this);
         }
