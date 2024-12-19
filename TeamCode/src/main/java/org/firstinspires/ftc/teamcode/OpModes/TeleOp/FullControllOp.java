@@ -19,18 +19,14 @@ public class FullControllOp extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         final Buttons buttons = new Buttons();
-        final Claw claw = new Claw();
         final Lift lift = new Lift();
         final Intake intake= new Intake();
         final DriveTrain driveTrain = new DriveTrain();
-        final Basket basket = new Basket();
-        final Extendo extendo = new Extendo();
         Subsystem[] subsystems = {buttons,driveTrain,extendo,lift,intake,basket,claw};
         for (Subsystem sub:subsystems) {
             sub.init(this);
         }
-
-//        while(opModeInInit()){ }
+ //        while(opModeInInit()){ }
         if(isStopRequested()) return;
         waitForStart();
         while(opModeIsActive()){

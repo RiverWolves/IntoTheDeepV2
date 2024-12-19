@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
+import android.icu.lang.UProperty;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -21,18 +23,26 @@ public  class Claw extends Subsystem {
         gp = opmode.gamepad2;
         telem=opmode.telemetry;
         cw = hm.servo.get("ServoClaw");
-        poz = 0.3f;
+        poz = 0f;
         cw.setPosition(poz);
     }
 
     @Override
     public void loop(Buttons buttons) {
         if(buttons.circle)
-            poz = 0f;
+            poz = 0.2f;
         else
-            poz = 0.3f;
+            poz = 0f;
 
         cw.setPosition(poz);
+        this.getClass();
+        mlem
+
+
+
+
+
+                
 //        telem.addData("Claw: pozitie ", poz);
 //        telem.addData("Claw: buton ", buttons.circle);
     }

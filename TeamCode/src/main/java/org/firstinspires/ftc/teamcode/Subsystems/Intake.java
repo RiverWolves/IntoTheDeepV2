@@ -7,12 +7,14 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Resurse.Buttons;
 import org.firstinspires.ftc.teamcode.Resurse.Subsystem;
 
 public class Intake extends Subsystem {
     HardwareMap hm;
     Gamepad gp;
+    Telemetry tel;
 //    Servo servoCleste, servoRotireIntake;
 //    double pasi, position;
 //    @Override
@@ -42,6 +44,7 @@ public class Intake extends Subsystem {
     Servo rabatare1;
     Servo rabatare2;
     public double Putere;
+    final float pozIntake = 0.25f, pozTrans = 0.95f;
 
     @Override
     public void init(OpMode opmode) {
@@ -51,29 +54,39 @@ public class Intake extends Subsystem {
         rotireD = hm.crservo.get("ServoIntakeRotireDreapta");
         rabatare1 = hm.servo.get("ServoIntakeRabatareDreapta");
         rabatare2 = hm.servo.get("ServoIntakeRabatareStanga");
+        tel = opmode.telemetry;
 
-
-        rabatare1.setDirection(Servo.Direction.REVERSE);
+        rabatare2.setDirection(Servo.Direction.REVERSE);
         rotireD.setDirection(DcMotorSimple.Direction.REVERSE);
+
+
+        rabatare1.setPosition(pozIntake);
+        rabatare2.setPosition(pozIntake);
+
+
     }
 
     @Override
     public void loop(Buttons buttons) {
+        float poz;
+
         Putere = gp.right_trigger - gp.left_trigger;
         rotireS.setPower(Putere);
         rotireD.setPower(Putere);
 
 
         if (buttons.cross)
-        {
-            rabatare1.setPosition(0.8);
-            rabatare2.setPosition(0.8);
+        { poz = pozTrans;
+
         }
         else
         {
-            rabatare1.setPosition(0);
-            rabatare2.setPosition(0);
+            poz = pozIntake;
         }
+        tel.addData("poz", poz);
+        rabatare1.setPosition(poz);
+        rabatare2.setPosition(poz);
+
     }
 
     public double getPower() {

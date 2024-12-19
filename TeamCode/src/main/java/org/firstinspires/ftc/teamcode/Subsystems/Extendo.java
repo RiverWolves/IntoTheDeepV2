@@ -50,3 +50,4 @@ public class Extendo extends Subsystem {
         return motor;
     }
 }
+//motor de stanga =
