@@ -34,9 +34,8 @@ public  class Claw extends Subsystem {
         else
             poz = 0f;
 
-        cw.setPosition(poz);
-        this.getClass();
-        mlem
+
+
 
 
 
