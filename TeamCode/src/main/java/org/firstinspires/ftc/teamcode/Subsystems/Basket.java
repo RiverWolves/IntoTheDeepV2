@@ -26,21 +26,22 @@ public class Basket extends Subsystem {
         basketD = hm.servo.get("ServoBasketDreapta");
         basketS = hm.servo.get("ServoBasketStanga");
         basketS.setDirection(Servo.Direction.REVERSE);
-        poz = 0.1f;
+        poz = 0;
 
+        basketS.setPosition(poz);
+        basketD.setPosition(poz);
     }
 
     @Override
     public void loop(Buttons buttons) {
         if (buttons.triangle){
-         poz = 0.8f;
+         poz = 1f;
         }
         else {
          poz = 0f;
         }
         telem.addData("Basket: Poz ", poz);
         telem.addData("Basket: Input ", buttons.triangle);
-        basketS.setPosition(poz);
-        basketD.setPosition(poz);
+
     }
 }

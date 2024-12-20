@@ -26,7 +26,7 @@ public class FullControllOp extends LinearOpMode {
         final Extendo extendo = new Extendo() ;
         final Basket basket = new Basket();
         final Claw claw = new Claw();
-        Subsystem[] subsystems = {buttons,extendo,driveTrain,intake,lift,claw};
+        Subsystem[] subsystems = {buttons,extendo,driveTrain,intake,lift,claw,basket};
         for (Subsystem sub:subsystems) {
             sub.init(this);
         }

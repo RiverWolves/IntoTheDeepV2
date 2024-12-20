@@ -32,9 +32,8 @@ public class Extendo extends Subsystem {
 
     @Override
     public void loop(Buttons buttons) {
-        tel.addData("poz",poz);
-        if(0.3> poz - gp.right_stick_y * coef && poz - gp.right_stick_y * coef > 0 )
-            poz -= gp.right_stick_y * coef;
+        if(0.3> poz + gp.right_stick_y * coef && poz + gp.right_stick_y * coef > 0 )
+            poz += gp.right_stick_y * coef;
 
         servoD.setPosition(poz);
         servoS.setPosition(poz);

@@ -35,14 +35,8 @@ public  class Claw extends Subsystem {
             poz = 0f;
 
         cw.setPosition(poz);
-        this.getClass();
 
-
-
-
-
-                
-//        telem.addData("Claw: pozitie ", poz);
-//        telem.addData("Claw: buton ", buttons.circle);
+        telem.addData("Claw: pozitie ", poz);
+        telem.addData("Claw: buton ", buttons.circle);
     }
 }

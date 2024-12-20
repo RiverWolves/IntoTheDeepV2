@@ -56,8 +56,8 @@ public class Intake extends Subsystem {
         rabatare1.setDirection(Servo.Direction.REVERSE);
         rotireD.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        rabatare1.setPosition(0.85);
-        rabatare2.setPosition(0.85);
+        rabatare1.setPosition(0.94);
+        rabatare2.setPosition(0.94);
     }
 
     @Override
@@ -69,8 +69,8 @@ public class Intake extends Subsystem {
 
         if (!buttons.cross)
         {
-            rabatare1.setPosition(0.85);
-            rabatare2.setPosition(0.85);
+            rabatare1.setPosition(0.94);
+            rabatare2.setPosition(0.94);
         }
         else
         {
