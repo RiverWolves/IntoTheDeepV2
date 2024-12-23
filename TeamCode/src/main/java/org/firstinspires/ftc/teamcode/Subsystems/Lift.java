@@ -17,7 +17,7 @@ public class Lift extends Subsystem {
     private Gamepad gpad;
     private DcMotor MotorLiftStanga = null, MotorLiftDreapta = null;
     private float coeff = 4; //The coefficient of how much the input ifluences the movement of the lift
-    private final int topLimit = 2000, lowLimit = 0; //Limit the height of the lift
+    private final int topLimit = 1300, lowLimit = 0; //Limit the height of the lift
     public int liftVirtualPozition = 0;
     @Override
     public void init(OpMode opmode) {
@@ -25,13 +25,13 @@ public class Lift extends Subsystem {
         hMap = opmode.hardwareMap;
         tel = opmode.telemetry;
         gpad = opmode.gamepad2;
-        MotorLiftStanga = initialized(hMap.get(DcMotor.class,"MotorLiftStanga"), DcMotorSimple.Direction.REVERSE);
-        MotorLiftDreapta = initialized(hMap.get(DcMotor.class,"MotorLiftDreapta"), DcMotorSimple.Direction.FORWARD);
+        if(MotorLiftStanga == null)
+            resetEncoders();
         liftVirtualPozition = 0;
     }
     @Override
     public void loop(Buttons buttons) {
-        float y = gpad.left_stick_y;
+        float y = gpad.right_stick_y;
         if (hMap == null || tel == null) tel.addData("ERROR #001", this);
         if(!isInParameter(-y)[0]||!isInParameter(-y)[1]) tel.addData("ERROR #002 : OUT OF BOUNDS", this);
         else {
@@ -47,6 +47,10 @@ public class Lift extends Subsystem {
             MotorLiftDreapta.setPower(1);
 
         }
+    }
+    public void resetEncoders(){
+        MotorLiftStanga = initialized(hMap.get(DcMotor.class,"MotorLiftStanga"), DcMotorSimple.Direction.REVERSE);
+        MotorLiftDreapta = initialized(hMap.get(DcMotor.class,"MotorLiftDreapta"), DcMotorSimple.Direction.FORWARD);
     }
 
     public boolean[] isInParameter(float y) {

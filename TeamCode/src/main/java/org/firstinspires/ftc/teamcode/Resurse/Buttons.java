@@ -12,8 +12,8 @@ public class Buttons extends Subsystem {
         PRESSED,
         UNPRESSING
     }
-    private buton[] buttons={buton.UNPRESSED,buton.UNPRESSED,buton.UNPRESSED,buton.UNPRESSED};
-    public boolean square,circle,triangle,cross;
+    private buton[] buttons={buton.UNPRESSED,buton.UNPRESSED,buton.UNPRESSED,buton.UNPRESSED,buton.UNPRESSED};
+    public boolean square,circle,triangle,cross,rightBumper;
     Gamepad gmp1,gmp2;
     Telemetry tele;
 
@@ -30,6 +30,7 @@ public class Buttons extends Subsystem {
         square = buttonToSwich(gmp2.x,1);
         triangle = buttonToSwich(gmp2.y,2);
         cross = buttonToSwich(gmp2.a,3);
+        rightBumper = buttonToSwich(gmp2.right_bumper,4);
 
     }
 

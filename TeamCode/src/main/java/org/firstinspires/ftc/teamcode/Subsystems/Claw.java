@@ -29,7 +29,7 @@ public  class Claw extends Subsystem {
 
     @Override
     public void loop(Buttons buttons) {
-        if(buttons.circle)
+        if(buttons.rightBumper)
             poz = 0.2f;
         else
             poz = 0f;
