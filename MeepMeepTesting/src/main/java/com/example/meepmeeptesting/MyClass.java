@@ -17,14 +17,12 @@ public class MyClass {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), wight)
                 .build();
 
-        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(70/6,-70+lenght, Math.toRadians(90)))
-                        .lineToY(-70/3 -lenght)
+        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(70/6,-70+lenght/2, Math.toRadians(90)))
+                        .lineToY(-70/3 -lenght/2)
                         .setReversed(true)
-                        .strafeTo(new Vector2d(70/3,-70+lenght))
-                
-
-                        .strafeTo(new Vector2d(70/3,-70+lenght))
-                        .strafeTo(new Vector2d(70-wight,-70+lenght))
+                        .strafeTo(new Vector2d(70/3,-70+lenght/2))
+                        .strafeTo(new Vector2d(70/3,-70+lenght/2))
+                        .strafeTo(new Vector2d(70-wight/2,-70+lenght/2))
                         .build());
 
 
