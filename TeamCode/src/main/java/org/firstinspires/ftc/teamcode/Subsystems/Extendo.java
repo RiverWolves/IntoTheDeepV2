@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -16,7 +15,7 @@ public class Extendo extends Subsystem {
     Telemetry tel;
     Gamepad gp;
     float poz;
-    final float coef = 0.005f;
+    final float speed = 0.005f;
     @Override
     public void init(OpMode opmode) {
         hm = opmode.hardwareMap;
@@ -26,16 +25,19 @@ public class Extendo extends Subsystem {
         servoS = hm.servo.get("ServoExtendoStanga");
         servoS.setDirection(Servo.Direction.REVERSE);
         poz = 0.3f;
-        servoD.setPosition(poz);
-        servoS.setPosition(poz);
+        updatePoz(poz);
     }
 
     @Override
     public void loop(Buttons buttons) {
-        if(0.3> poz + gp.left_stick_y * coef && poz + gp.left_stick_y * coef > 0 )
-            poz += gp.left_stick_y * coef;
+        if(0.3> poz + gp.left_stick_y * speed && poz + gp.left_stick_y * speed > 0 )
+            poz += gp.left_stick_y * speed;
 
-        servoD.setPosition(poz);
-        servoS.setPosition(poz);
+        updatePoz(poz);
+
+    }
+    public void updatePoz(double value){
+        servoD.setPosition(value);
+        servoS.setPosition(value);
     }
 }

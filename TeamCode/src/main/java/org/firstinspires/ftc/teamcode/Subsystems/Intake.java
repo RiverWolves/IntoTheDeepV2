@@ -13,34 +13,8 @@ import org.firstinspires.ftc.teamcode.Resurse.Subsystem;
 public class Intake extends Subsystem {
     HardwareMap hm;
     Gamepad gp;
-//    Servo servoCleste, servoRotireIntake;
-//    double pasi, position;
-//    @Override
-//    public void init(OpMode opmode){
-//        hm=opmode.hardwareMap;
-//        gp=opmode.gamepad2;
-//        servoCleste=hm.servo.get("ServoIntakeCleste");
-//        servoRotireIntake=hm.servo.get("ServoIntakeRotire");
-//        pasi =0f;
-//        position=0.5f;
-//        servoCleste.setPosition(0);
-//        servoRotireIntake.setPosition(position);
-//    }
-//
-//    @Override
-//    public void loop(Buttons buttons) {
-//        pasi = (gp.right_trigger- gp.left_trigger) *0.1;
-//        position += pasi;
-//        servoRotireIntake.setPosition(position);
-//
-//        if (buttons.square)
-//            servoCleste.setPosition(0.5f);
-//        else
-//            servoCleste.setPosition(0);
-//    }
     CRServo rotireS, rotireD;
-    Servo rabatare1;
-    Servo rabatare2;
+    Servo rabatare1,rabatare2;
     public double Putere;
 
     @Override
@@ -56,31 +30,29 @@ public class Intake extends Subsystem {
         rabatare1.setDirection(Servo.Direction.REVERSE);
         rotireD.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        rabatare1.setPosition(0.94);
-        rabatare2.setPosition(0.94);
+        retract();
     }
 
     @Override
     public void loop(Buttons buttons) {
         Putere = gp.right_trigger - gp.left_trigger;
-        rotireS.setPower(Putere);
-        rotireD.setPower(Putere);
+        updatePower(Putere);
 
-
-        if (!buttons.cross)
-        {
-            rabatare1.setPosition(0.94);
-            rabatare2.setPosition(0.94);
-        }
+        if (buttons.cross)
+            extend();
         else
-        {
-            rabatare1.setPosition(0.18);
-            rabatare2.setPosition(0.18);
-        }
+            retract();
     }
-
-    public double getPower() {
-        return Putere;
+    public void retract(){
+        rabatare1.setPosition(0.94);
+        rabatare2.setPosition(0.94);
+    }
+    public void extend(){
+        rabatare1.setPosition(0.18);
+        rabatare2.setPosition(0.18);
+    }
+    public void updatePower(double value){
+        rotireS.setPower(value);
+        rotireD.setPower(value);
     }
 }
-//servo de la 0-0.5 si se rabateaza + buton va fi switch + functie de getposition

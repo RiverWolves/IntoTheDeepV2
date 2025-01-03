@@ -16,7 +16,6 @@ public class Basket extends Subsystem {
     Servo basketS,basketD;
     Telemetry telem;
 
-    float poz=0;
     @Override
     public void init(OpMode opmode) {
         hm = opmode.hardwareMap;
@@ -26,22 +25,30 @@ public class Basket extends Subsystem {
         basketD = hm.servo.get("ServoBasketDreapta");
         basketS = hm.servo.get("ServoBasketStanga");
         basketS.setDirection(Servo.Direction.REVERSE);
-        poz = 0;
 
-        basketS.setPosition(poz);
-        basketD.setPosition(poz);
+        intake();
     }
 
     @Override
     public void loop(Buttons buttons) {
-        if (buttons.triangle){
-         poz = 1f;
-        }
-        else {
-         poz = 0f;
-        }
-        telem.addData("Basket: Poz ", poz);
+        if (buttons.triangle)
+            outtake();
+        else
+            intake();
+
         telem.addData("Basket: Input ", buttons.triangle);
 
+    }
+
+    public void updatePozition(double value){
+        basketS.setPosition(value);
+        basketD.setPosition(value);
+    }
+    public void outtake()
+    {
+        updatePozition(1);
+    }
+    public void intake(){
+        updatePozition(0);
     }
 }
