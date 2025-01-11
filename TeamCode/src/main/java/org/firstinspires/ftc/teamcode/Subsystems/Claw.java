@@ -23,7 +23,7 @@ public  class Claw extends Subsystem {
         gp = opmode.gamepad2;
         telem=opmode.telemetry;
         cw = hm.servo.get("ServoClaw");
-        poz = 0f;
+        poz = 0.5f;
         cw.setPosition(poz);
     }
 
@@ -38,9 +38,9 @@ public  class Claw extends Subsystem {
     public void updateState(boolean isClosed)
     {
         if(!isClosed)
-            poz = 0.2f;
+            poz = 0.6f;
         else
-            poz = 0f;
+            poz = 0.3f;
 
         cw.setPosition(poz);
     }

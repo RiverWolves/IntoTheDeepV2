@@ -30,13 +30,16 @@ public class Extendo extends Subsystem {
 
     @Override
     public void loop(Buttons buttons) {
-        if(0.3> poz + gp.left_stick_y * speed && poz + gp.left_stick_y * speed > 0 )
-            poz += gp.left_stick_y * speed;
-
+        if( poz + speed < 0.3 && gp.dpad_up )
+            poz += speed;
+        if(poz -speed > 0 && gp.dpad_down)
+            poz -= speed;
         updatePoz(poz);
+        tel.addData("EXTENDO",poz);
 
     }
     public void updatePoz(double value){
+
         servoD.setPosition(value);
         servoS.setPosition(value);
     }

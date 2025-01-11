@@ -46,9 +46,9 @@ public class Basket extends Subsystem {
     }
     public void outtake()
     {
-        updatePozition(1);
+        updatePozition(0);
     }
     public void intake(){
-        updatePozition(0);
+        updatePozition(1);
     }
 }
