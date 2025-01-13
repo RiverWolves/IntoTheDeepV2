@@ -9,7 +9,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Resurse.Buttons;
 import org.firstinspires.ftc.teamcode.Resurse.Subsystem;
 
-public class Basket extends Subsystem {
+public class Arm extends Subsystem {
 
     Gamepad gp;
     HardwareMap hm;
@@ -31,12 +31,9 @@ public class Basket extends Subsystem {
 
     @Override
     public void loop(Buttons buttons) {
-        if (buttons.triangle)
-            outtake();
-        else
-            intake();
 
-        telem.addData("Basket: Input ", buttons.triangle);
+
+        telem.addData("Arm: Input ", buttons.triangle);
 
     }
 
