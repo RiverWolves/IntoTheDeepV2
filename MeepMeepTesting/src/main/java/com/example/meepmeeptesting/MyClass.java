@@ -42,12 +42,6 @@ public class MyClass {
                 .strafeTo(new Vector2d(8, -34))
                 .waitSeconds(1)
                 .strafeTo(new Vector2d(56, -60))
-
-
-
-
-
-
                 .build());
 
         meepMeep.setBackground(MeepMeep.Background.FIELD_INTO_THE_DEEP_JUICE_DARK)
