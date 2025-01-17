@@ -10,42 +10,83 @@ import org.firstinspires.ftc.teamcode.Resurse.Buttons;
 import org.firstinspires.ftc.teamcode.Resurse.Subsystem;
 
 public class Arm extends Subsystem {
-
-    Gamepad gp;
+    Servo ServoBratStanga, ServoRotatieCleste, ServoBratDreapta;
     HardwareMap hm;
-    Servo basketS,basketD;
-    Telemetry telem;
+    Gamepad gp;
+    Telemetry tel;
+    float pozitieBrat;
+    float clesteUnghiRotatie;
+    public void init(OpMode opmode){
+        hm=opmode.hardwareMap;
+        gp=opmode.gamepad2;
+        tel = opmode.telemetry;
 
-    @Override
-    public void init(OpMode opmode) {
-        hm = opmode.hardwareMap;
-        gp = opmode.gamepad2;
-        telem=opmode.telemetry;
+        ServoBratStanga =hm.servo.get("ServoBratStanga");
+        ServoRotatieCleste =hm.servo.get("ServoMiscareCleste");
+        ServoBratDreapta=hm.servo.get("ServoBratDreapta");
 
-        basketD = hm.servo.get("ServoBasketDreapta");
-        basketS = hm.servo.get("ServoBasketStanga");
-        basketS.setDirection(Servo.Direction.REVERSE);
+        pozitieBrat=degreesToServo(120);//paralel cu solul
+        clesteUnghiRotatie=servoToDegrees(pozitieBrat);//paralel cu solul
 
-        intake();
+        updateBratPosition(pozitieBrat);
+        updateClestePosition(degreesToServo(clesteUnghiRotatie));
+
+        ServoBratDreapta.setDirection(Servo.Direction.REVERSE);
+    }
+    public void loop(Buttons buttons){
+        float futurePoz =pozitieBrat+(gp.right_trigger-gp.left_trigger)*0.01f;
+        if(futurePoz>=0&&futurePoz<degreesToServo(45)){
+            pozitieBrat=futurePoz;
+            clesteUnghiRotatie=90+servoToDegrees(pozitieBrat);
+        }
+        else if (futurePoz> degreesToServo(45)&&futurePoz<degreesToServo(90)) {
+            pozitieBrat=futurePoz;
+            clesteUnghiRotatie=180-(180-servoToDegrees(pozitieBrat));
+        }
+        else if(futurePoz> degreesToServo(90)&&futurePoz<degreesToServo(120))
+        {
+            pozitieBrat=futurePoz;
+            clesteUnghiRotatie=servoToDegrees(pozitieBrat);
+        }
+
+
+        tel.addData("ARM: BRAT",servoToDegrees(pozitieBrat) );
+        tel.addData("ARM: CLESTE",clesteUnghiRotatie );
+        updateBratPosition(pozitieBrat);
+        updateClestePosition(degreesToServo(clesteUnghiRotatie));
+
+    }
+    public float degreesToServo(float degree) {
+        float in_min = 0;
+        float in_max = 135;
+        float out_min = 0;
+        float out_max = 1;
+        return (degree - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+    }
+    public float servoToDegrees(float degree) {
+        float in_min = 0;
+        float in_max = 1;
+        float out_min = 0;
+        float out_max = 135;
+        return (degree - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+    }
+    public void updateBratPosition(double value){
+        ServoBratDreapta.setPosition(value);
+        ServoBratStanga.setPosition(value);
     }
 
-    @Override
-    public void loop(Buttons buttons) {
-
-
-        telem.addData("Arm: Input ", buttons.triangle);
-
+    public void updateClestePosition(double value){
+        ServoRotatieCleste.setPosition(value);
     }
 
-    public void updatePozition(double value){
-        basketS.setPosition(value);
-        basketD.setPosition(value);
+    public void retract(){
+        updateBratPosition(degreesToServo(180));
+        updateClestePosition(degreesToServo(90));
     }
-    public void outtake()
-    {
-        updatePozition(0);
+
+    public void extend(){
+        ServoBratStanga.setPosition(degreesToServo(0));
+        ServoRotatieCleste.setPosition(degreesToServo(90));
     }
-    public void intake(){
-        updatePozition(1);
-    }
+
 }

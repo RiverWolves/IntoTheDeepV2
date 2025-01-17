@@ -58,18 +58,18 @@ public final class MecanumDrive {
         // TODO: fill in these values based on
         //   see https://ftc-docs.firstinspires.org/en/latest/programming_resources/imu/imu.html?highlight=imu#physical-hub-mounting
         public RevHubOrientationOnRobot.LogoFacingDirection logoFacingDirection =
-                RevHubOrientationOnRobot.LogoFacingDirection.DOWN;
+                RevHubOrientationOnRobot.LogoFacingDirection.LEFT;
         public RevHubOrientationOnRobot.UsbFacingDirection usbFacingDirection =
-                RevHubOrientationOnRobot.UsbFacingDirection.BACKWARD;
+                RevHubOrientationOnRobot.UsbFacingDirection.UP;
 
         // drive model parameters
-        public double inPerTick = 0.00282f;
+        public double inPerTick = 0.0029f;
         public double lateralInPerTick = inPerTick;
-        public double trackWidthTicks = 4900;
+        public double trackWidthTicks = 3534.51040427657;
 
         // feedforward parameters (in tick units)
-        public double kS = 1.7480001962844915;
-        public double kV = 0.0005636936537904565;
+        public double kS = 1.530371307880666;
+        public double kV = 0.00047975476574348434;
         public double kA = 0.00001;
 
         // path profile parameters (in inches)
@@ -223,7 +223,6 @@ public final class MecanumDrive {
         rightFront = hardwareMap.get(DcMotorEx.class, "DF");
 
         leftBack.setDirection(DcMotorSimple.Direction.REVERSE);
-        rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
         leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
 
         leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

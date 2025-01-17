@@ -30,15 +30,22 @@ public class Intake extends Subsystem {
         rabatare1.setDirection(Servo.Direction.REVERSE);
         rotireD.setDirection(DcMotorSimple.Direction.REVERSE);
 
-retract();
+extend();
     }
 
     @Override
     public void loop(Buttons buttons) {
-        Putere = gp.right_trigger - gp.left_trigger;
+        if(gp.left_bumper)
+            Putere = 1;
+        else if (gp.right_bumper) {
+            Putere = -1;
+        }
+        else {
+            Putere =0;
+        }
         updatePower(Putere);
 
-        if (!buttons.cross)
+        if (buttons.cross)
             retract();
         else
             extend();

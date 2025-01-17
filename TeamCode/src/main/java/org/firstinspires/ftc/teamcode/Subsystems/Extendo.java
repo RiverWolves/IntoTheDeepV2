@@ -24,17 +24,22 @@ public class Extendo extends Subsystem {
         servoD = hm.servo.get("ServoExtendoDreapta");
         servoS = hm.servo.get("ServoExtendoStanga");
         servoS.setDirection(Servo.Direction.REVERSE);
-        poz = 0.3f;
+        poz = 0.35f;
         updatePoz(poz);
     }
 
     @Override
     public void loop(Buttons buttons) {
-        if( poz + speed < 0.3 && gp.dpad_up )
-            poz += speed;
-        if(poz -speed > 0 && gp.dpad_down)
-            poz -= speed;
+//        if( poz + speed < 0.35 && gp.dpad_up )
+//            poz += speed;
+//        if(poz -speed > 0 && gp.dpad_down)
+//            poz -= speed;
+        poz += gp.left_stick_y*speed;
+//        if (poz+(gp.left_stick_y*speed)<0.35&&poz+(gp.left_stick_y*speed)>0.2){
+//            updatePoz(poz);
+//        }
         updatePoz(poz);
+
         tel.addData("EXTENDO",poz);
 
     }

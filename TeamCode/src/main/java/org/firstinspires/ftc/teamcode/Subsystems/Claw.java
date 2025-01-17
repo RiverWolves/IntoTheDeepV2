@@ -29,16 +29,16 @@ public  class Claw extends Subsystem {
 
     @Override
     public void loop(Buttons buttons) {
-        updateState(buttons.rightBumper);
+        updateState(buttons.dpadRight);
 
         telem.addData("Claw: pozitie ", poz);
-        telem.addData("Claw: buton ", buttons.circle);
+        telem.addData("Claw: buton ", buttons.dpadRight);
     }
 
     public void updateState(boolean isClosed)
     {
         if(!isClosed)
-            poz = 0.6f;
+            poz = 0.9f;
         else
             poz = 0.3f;
 

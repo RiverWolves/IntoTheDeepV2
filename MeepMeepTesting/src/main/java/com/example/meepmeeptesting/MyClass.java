@@ -55,7 +55,7 @@ public class MyClass {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 12.4)
                 .build();
 
-        myBot2.runAction(myBot2.getDrive().actionBuilder(new Pose2d(-8, -63, Math.toRadians(90)))
+        myBot2.runAction(myBot2.getDrive().actionBuilder(new Pose2d(-36, -63, Math.toRadians(90)))
                 .strafeToLinearHeading(new Vector2d(-54, -54), Math.toRadians(45))
                 .waitSeconds(1)
                 .strafeToLinearHeading(new Vector2d(-48, -39), Math.toRadians(90))
@@ -79,6 +79,24 @@ public class MyClass {
                 .setDarkMode(true)
                 .setBackgroundAlpha(0.95f)
                 .addEntity(myBot2)
+                .start();
+
+
+        RoadRunnerBotEntity myBot3 = new DefaultBotBuilder(meepMeep)
+                // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
+                .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 12.4)
+                .build();
+
+        myBot3.runAction(myBot3.getDrive().actionBuilder(new Pose2d(0, 0, 0))
+
+                                .splineTo(new Vector2d(20, 20), Math.PI / 2)
+                                .splineTo(new Vector2d(0, 35), Math.PI)
+                                .build());
+
+        meepMeep.setBackground(MeepMeep.Background.FIELD_INTO_THE_DEEP_JUICE_DARK)
+                .setDarkMode(true)
+                .setBackgroundAlpha(0.95f)
+                .addEntity(myBot3)
                 .start();
     }
 }
