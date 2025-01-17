@@ -24,7 +24,7 @@ public class Extendo extends Subsystem {
         servoD = hm.servo.get("ServoExtendoDreapta");
         servoS = hm.servo.get("ServoExtendoStanga");
         servoS.setDirection(Servo.Direction.REVERSE);
-        poz = 0.35f;
+        poz = 0.30f;
         updatePoz(poz);
     }
 
