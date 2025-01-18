@@ -15,7 +15,7 @@ public class Lift extends Subsystem {
     private Telemetry tel = null;
     private Gamepad gpad;
     private DcMotor MotorLiftStanga = null, MotorLiftDreapta = null;
-    private float speed = 20; //The coefficient of how much the input ifluences the movement of the lift
+    private float speed = 50; //The coefficient of how much the input ifluences the movement of the lift
     private final int topLimit = 3000, lowLimit = 0; //Limit the height of the lift
     public int liftVirtualPozition = 0;
     @Override

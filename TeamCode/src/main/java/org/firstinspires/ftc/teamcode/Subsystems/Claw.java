@@ -23,13 +23,12 @@ public  class Claw extends Subsystem {
         gp = opmode.gamepad2;
         telem=opmode.telemetry;
         cw = hm.servo.get("ServoClaw");
-        poz = 0.5f;
-        cw.setPosition(poz);
+       updateState(true);
     }
 
     @Override
     public void loop(Buttons buttons) {
-        updateState(buttons.dpadRight);
+        updateState(!buttons.dpadRight);
 
         telem.addData("Claw: pozitie ", poz);
         telem.addData("Claw: buton ", buttons.dpadRight);
@@ -38,9 +37,11 @@ public  class Claw extends Subsystem {
     public void updateState(boolean isClosed)
     {
         if(!isClosed)
-            poz = 0.9f;
+            poz = 1f;
         else
             poz = 0.3f;
+
+
 
         cw.setPosition(poz);
     }

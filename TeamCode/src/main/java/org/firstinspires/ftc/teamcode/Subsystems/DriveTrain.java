@@ -25,12 +25,13 @@ public class DriveTrain extends Subsystem {
 
     @Override
     public void loop(Buttons buttons) {
+        float y = -gp.left_stick_y, x = -gp.left_stick_x, rx = -gp.right_stick_x;
         if(!gp.dpad_right) {
-            float y = -gp.left_stick_y, x = -gp.left_stick_x, rx = -gp.right_stick_x;
+
             drive.setDrivePowers(new PoseVelocity2d(new Vector2d(y, x), rx));
         }
         else {
-            drive.setDrivePowers(new PoseVelocity2d(new Vector2d(0.5  , 0),0));
+            drive.setDrivePowers(new PoseVelocity2d(new Vector2d(y*0.5, x*0.5), rx*0.5));
         }
 
     }

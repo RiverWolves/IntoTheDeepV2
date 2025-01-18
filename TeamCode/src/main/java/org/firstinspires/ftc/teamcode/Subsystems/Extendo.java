@@ -10,12 +10,12 @@ import org.firstinspires.ftc.teamcode.Resurse.Buttons;
 import org.firstinspires.ftc.teamcode.Resurse.Subsystem;
 
 public class Extendo extends Subsystem {
-    Servo servoS, servoD;
+    Servo servoS, servoD, ServoRotire;
     HardwareMap hm;
     Telemetry tel;
     Gamepad gp;
     float poz;
-    final float speed = 0.005f;
+    final float speed = 0.004f;
     @Override
     public void init(OpMode opmode) {
         hm = opmode.hardwareMap;
@@ -23,8 +23,10 @@ public class Extendo extends Subsystem {
         tel = opmode.telemetry;
         servoD = hm.servo.get("ServoExtendoDreapta");
         servoS = hm.servo.get("ServoExtendoStanga");
+        ServoRotire=hm.servo.get("ServoRomaneasca");
         servoS.setDirection(Servo.Direction.REVERSE);
-        poz = 0.30f;
+        poz = 0.32f;
+        ServoRotire.setPosition(0);
         updatePoz(poz);
     }
 
@@ -34,12 +36,15 @@ public class Extendo extends Subsystem {
 //            poz += speed;
 //        if(poz -speed > 0 && gp.dpad_down)
 //            poz -= speed;
-        poz += gp.left_stick_y*speed;
-//        if (poz+(gp.left_stick_y*speed)<0.35&&poz+(gp.left_stick_y*speed)>0.2){
-//            updatePoz(poz);
-//        }
-        updatePoz(poz);
 
+        if (poz+(-gp.left_stick_y*speed)<0.35&&poz+(-gp.left_stick_y*speed)>0){
+            poz -= gp.left_stick_y*speed;
+            updatePoz(poz);
+        }
+        if(gp.square){
+            ServoRotire.setPosition(0.3);
+        }
+        else ServoRotire.setPosition(0);
         tel.addData("EXTENDO",poz);
 
     }

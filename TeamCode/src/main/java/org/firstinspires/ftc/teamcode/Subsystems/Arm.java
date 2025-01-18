@@ -24,36 +24,34 @@ public class Arm extends Subsystem {
         ServoBratStanga =hm.servo.get("ServoBratStanga");
         ServoRotatieCleste =hm.servo.get("ServoMiscareCleste");
         ServoBratDreapta=hm.servo.get("ServoBratDreapta");
+        ServoBratDreapta.setDirection(Servo.Direction.REVERSE);
 
-        pozitieBrat=degreesToServo(120);//paralel cu solul
-        clesteUnghiRotatie=servoToDegrees(pozitieBrat);//paralel cu solul
+        pozitieBrat=1f;//paralel cu solul
+        clesteUnghiRotatie=0f;//paralel cu solul
 
         updateBratPosition(pozitieBrat);
         updateClestePosition(degreesToServo(clesteUnghiRotatie));
 
-        ServoBratDreapta.setDirection(Servo.Direction.REVERSE);
+
     }
     public void loop(Buttons buttons){
         float futurePoz =pozitieBrat+(gp.right_trigger-gp.left_trigger)*0.01f;
-        if(futurePoz>=0&&futurePoz<degreesToServo(45)){
+
+        if(futurePoz>=0.25&&futurePoz<0.6){
             pozitieBrat=futurePoz;
-            clesteUnghiRotatie=90+servoToDegrees(pozitieBrat);
+            clesteUnghiRotatie=0f;
         }
-        else if (futurePoz> degreesToServo(45)&&futurePoz<degreesToServo(90)) {
+        else if (futurePoz> 0.6&&futurePoz<1) {
             pozitieBrat=futurePoz;
-            clesteUnghiRotatie=180-(180-servoToDegrees(pozitieBrat));
-        }
-        else if(futurePoz> degreesToServo(90)&&futurePoz<degreesToServo(120))
-        {
-            pozitieBrat=futurePoz;
-            clesteUnghiRotatie=servoToDegrees(pozitieBrat);
+            clesteUnghiRotatie=0f;
         }
 
 
-        tel.addData("ARM: BRAT",servoToDegrees(pozitieBrat) );
+
+        tel.addData("ARM: BRAT",pozitieBrat);
         tel.addData("ARM: CLESTE",clesteUnghiRotatie );
         updateBratPosition(pozitieBrat);
-        updateClestePosition(degreesToServo(clesteUnghiRotatie));
+        updateClestePosition(clesteUnghiRotatie);
 
     }
     public float degreesToServo(float degree) {
